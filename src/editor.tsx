@@ -89,7 +89,7 @@ export const Writly = ({
           }),
         editable: props?.editable,
         theme: props?.theme || theme,
-        editorState: collaborative ? props?.editorState : null,
+        editorState: collaborative ? null : props?.editorState,
         html: props?.html,
       }}
     >
