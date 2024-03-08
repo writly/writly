@@ -4,6 +4,7 @@ import { ClearEditorPlugin } from "@lexical/react/LexicalClearEditorPlugin";
 import ClickableLinkPlugin from "@lexical/react/LexicalClickableLinkPlugin";
 import {
   InitialConfigType,
+  InitialEditorStateType,
   LexicalComposer,
 } from "@lexical/react/LexicalComposer";
 import { ContentEditable } from "@lexical/react/LexicalContentEditable";
@@ -16,7 +17,14 @@ import { LinkPlugin } from "@lexical/react/LexicalLinkPlugin";
 import { ListPlugin } from "@lexical/react/LexicalListPlugin";
 import { RichTextPlugin } from "@lexical/react/LexicalRichTextPlugin";
 import { TabIndentationPlugin } from "@lexical/react/LexicalTabIndentationPlugin";
-import { LexicalEditor } from "lexical";
+import {
+  EditorThemeClasses,
+  HTMLConfig,
+  Klass,
+  LexicalEditor,
+  LexicalNode,
+  LexicalNodeReplacement,
+} from "lexical";
 import { createRef, useEffect, useState } from "react";
 
 import { AutoLinkPlugin } from "./plugins/AutoLinkPlugin";
@@ -38,11 +46,20 @@ import { MaxLengthPlugin } from "./plugins/MaxLengthPlugin";
 import { PlaceholderPlugin } from "./plugins/PlaceholderPlugin";
 import { theme } from "./theme";
 
-export interface WritlyProps extends InitialConfigType {
+export interface WritlyProps {
   id?: string;
   collaborative?: boolean;
   spellCheck?: boolean;
   maxLength?: number;
+  /* InitialConfigType */
+  editor__DEPRECATED?: LexicalEditor | null;
+  namespace?: string;
+  nodes?: ReadonlyArray<Klass<LexicalNode> | LexicalNodeReplacement>;
+  onError?: (error: Error, editor: LexicalEditor) => void;
+  editable?: boolean;
+  theme?: EditorThemeClasses;
+  editorState?: InitialEditorStateType;
+  html?: HTMLConfig;
 }
 
 export const WritlyRef = createRef<LexicalEditor>();
