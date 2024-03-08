@@ -3,7 +3,7 @@
   "version": "0.1.0-alpha.0",
   "private": false,
   "scripts": {
-    "build-css": "npx concat -o writly.css src\\editor.css src\\plugins.css",
+    "build-css": "npx concat -o writly.css src/editor.css src/plugins.css",
     "minify-css": "npx cleancss -o writly.css writly.css",
     "build": "npm run build-css && npm run minify-css && npx tsup",
     "lint": "eslint . --max-warnings 0"
