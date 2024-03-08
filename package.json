@@ -1,7 +1,7 @@
 {
   "name": "writly",
   "version": "0.1.0-alpha.0",
-  "private": true,
+  "private": false,
   "scripts": {
     "build-css": "pnpm concat -o writly.css src\\editor.css src\\plugins.css",
     "minify-css": "pnpm cleancss -o writly.css writly.css",
