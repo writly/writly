@@ -16,7 +16,7 @@ npm install writly
 
 ```jsx
 import { Writly } from "writly";
-import "writly-/writly.css";
+import "writly/writly.css";
 
 export default function App() {
   return (
