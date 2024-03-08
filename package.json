@@ -3,9 +3,9 @@
   "version": "0.1.0-alpha.0",
   "private": false,
   "scripts": {
-    "build-css": "pnpm concat -o writly.css src\\editor.css src\\plugins.css",
-    "minify-css": "pnpm cleancss -o writly.css writly.css",
-    "build": "pnpm build-css && pnpm minify-css && tsup",
+    "build-css": "npx concat -o writly.css src\\editor.css src\\plugins.css",
+    "minify-css": "npx cleancss -o writly.css writly.css",
+    "build": "npm run build-css && npm run minify-css && npx tsup",
     "lint": "eslint . --max-warnings 0"
   },
   "files": [
@@ -32,8 +32,7 @@
     "eslint": "^8.57.0",
     "prettier": "^3.2.5",
     "tsup": "^8.0.2",
-    "typescript": "^5.3.3",
-    "uglifycss": "^0.0.29"
+    "typescript": "^5.3.3"
   },
   "dependencies": {
     "@lexical/code": "^0.13.1",
