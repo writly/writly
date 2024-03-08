@@ -1,0 +1,65 @@
+{
+  "name": "writly",
+  "version": "0.1.0-alpha.0",
+  "private": true,
+  "scripts": {
+    "build-css": "pnpm concat -o writly.css src\\editor.css src\\plugins.css",
+    "minify-css": "pnpm cleancss -o writly.css writly.css",
+    "build": "pnpm build-css && pnpm minify-css && tsup",
+    "lint": "eslint . --max-warnings 0"
+  },
+  "files": [
+    "writly.css",
+    "dist/*"
+  ],
+  "main": "./dist/index.js",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "style": "writly.css",
+  "peerDependencies": {
+    "react": "^18",
+    "react-dom": "^18"
+  },
+  "devDependencies": {
+    "@turbo/gen": "^1.12.4",
+    "@types/eslint": "^8.56.5",
+    "@types/katex": "^0.16.7",
+    "@types/node": "^20.11.24",
+    "@types/react": "^18.2.61",
+    "@types/react-dom": "^18.2.19",
+    "clean-css-cli": "^5.6.3",
+    "concat": "^1.0.3",
+    "eslint": "^8.57.0",
+    "prettier": "^3.2.5",
+    "tsup": "^8.0.2",
+    "typescript": "^5.3.3",
+    "uglifycss": "^0.0.29"
+  },
+  "dependencies": {
+    "@lexical/code": "^0.13.1",
+    "@lexical/hashtag": "^0.13.1",
+    "@lexical/html": "^0.13.1",
+    "@lexical/link": "^0.13.1",
+    "@lexical/list": "^0.13.1",
+    "@lexical/markdown": "^0.13.1",
+    "@lexical/overflow": "^0.13.1",
+    "@lexical/react": "^0.13.1",
+    "@lexical/rich-text": "^0.13.1",
+    "@lexical/selection": "^0.13.1",
+    "@lexical/utils": "^0.13.1",
+    "@lexical/yjs": "^0.13.1",
+    "@radix-ui/react-popover": "^1.0.7",
+    "@radix-ui/react-scroll-area": "^1.0.5",
+    "@types/lodash-es": "^4.17.12",
+    "cmdk": "^0.2.1",
+    "katex": "^0.16.9",
+    "lexical": "^0.13.1",
+    "lodash-es": "^4.17.21",
+    "lucide-react": "^0.344.0",
+    "react-error-boundary": "^4.0.13",
+    "unique-names-generator": "^4.7.1",
+    "y-websocket": "^1.5.4",
+    "yjs": "^13.6.14",
+    "zustand": "^4.5.2"
+  }
+}
