@@ -6,7 +6,9 @@
     "build-css": "npx concat -o writly.css src/editor.css src/plugins.css",
     "minify-css": "npx cleancss -o writly.css writly.css",
     "build": "npm run build-css && npm run minify-css && npx tsup",
-    "lint": "eslint . --max-warnings 0"
+    "lint": "eslint . --max-warnings 0",
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build"
   },
   "files": [
     "writly.css",
@@ -21,6 +23,14 @@
     "react-dom": "^18"
   },
   "devDependencies": {
+    "@storybook/addon-essentials": "^7.6.17",
+    "@storybook/addon-interactions": "^7.6.17",
+    "@storybook/addon-links": "^7.6.17",
+    "@storybook/addon-onboarding": "^1.0.11",
+    "@storybook/blocks": "^7.6.17",
+    "@storybook/react": "^7.6.17",
+    "@storybook/react-vite": "^7.6.17",
+    "@storybook/test": "^7.6.17",
     "@turbo/gen": "^1.12.4",
     "@types/eslint": "^8.56.5",
     "@types/katex": "^0.16.7",
@@ -30,7 +40,11 @@
     "clean-css-cli": "^5.6.3",
     "concat": "^1.0.3",
     "eslint": "^8.57.0",
+    "eslint-plugin-storybook": "^0.8.0",
     "prettier": "^3.2.5",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "storybook": "^7.6.17",
     "tsup": "^8.0.2",
     "typescript": "^5.3.3"
   },
@@ -60,5 +74,11 @@
     "y-websocket": "^1.5.4",
     "yjs": "^13.6.14",
     "zustand": "^4.5.2"
+  },
+  "eslintConfig": {
+    "extends": [
+      "plugin:storybook/recommended",
+      "plugin:storybook/recommended"
+    ]
   }
 }
