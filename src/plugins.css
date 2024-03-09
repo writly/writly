@@ -262,13 +262,13 @@
   border-color: rgb(51 65 85);
 }
 
-.wtly-code-action-menu__check {
+.wtly-code-action-menu__check_icon {
   height: 0.75rem /* 12px */;
   width: 0.75rem;
   color: rgb(74 222 128);
 }
 
-.wtly-code-action-menu__copy {
+.wtly-code-action-menu__copy_icon {
   height: 0.75rem /* 12px */;
   width: 0.75rem;
 }

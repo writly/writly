@@ -56,9 +56,9 @@ export const CodeCopyButton = ({ getCodeDOMNode }: Props) => {
       aria-label="copy"
     >
       {isCopyCompleted ? (
-        <Check className="wtly-code-action-menu__check" />
+        <Check className="wtly-code-action-menu__check_icon" />
       ) : (
-        <Copy className="wtly-code-action-menu__copy" />
+        <Copy className="wtly-code-action-menu__copy_icon" />
       )}
     </button>
   );
