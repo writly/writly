@@ -40,7 +40,7 @@ export class ComponentPickerOption extends MenuOption {
       keywords?: Array<string>;
       keyboardShortcut?: string;
       onSelect: (queryString: string) => void;
-    }
+    },
   ) {
     super(title);
     this.title = title;

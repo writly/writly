@@ -9,7 +9,14 @@ const meta: Meta<typeof Writly> = {
   component: Writly,
   decorators: [
     (Story) => (
-      <div style={{ width: "100%", height: "100%", padding: "50px" }}>
+      <div
+        style={{
+          minWidth: "650px",
+          width: "80%",
+          height: "100%",
+          padding: "50px",
+        }}
+      >
         <Story />
       </div>
     ),
