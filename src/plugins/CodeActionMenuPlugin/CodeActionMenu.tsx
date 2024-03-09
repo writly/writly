@@ -17,7 +17,7 @@ function getCodeLanguageOptions(): [string, string][] {
   const options: [string, string][] = [];
 
   for (const [lang, friendlyName] of Object.entries(
-    CODE_LANGUAGE_FRIENDLY_NAME_MAP,
+    CODE_LANGUAGE_FRIENDLY_NAME_MAP
   )) {
     options.push([lang, friendlyName]);
   }
@@ -86,11 +86,6 @@ export const CodeActionMenu = ({
                               "wtly-code-action-menu__check " +
                               (lang === _lang ? "selected" : "")
                             }
-                            // className={
-                            //   "ml-auto h-4 w-4 " + lang === _lang
-                            //     ? "opacity-100"
-                            //     : "opacity-0"
-                            // }
                           />
                         </CommandItem>
                       );

@@ -1,7 +1,7 @@
 "use client";
 
 import { Writly, WritlyRef, getContentAsHTML } from "writly";
-import "writly/writly.css";
+
 
 export default function Home() {
   return (

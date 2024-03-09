@@ -7,10 +7,6 @@
   white-space: pre-wrap;
   line-height: 1.75rem;
   padding: 0px;
-  /* padding-left: 0.75rem; */
-  /* padding-right: 0.75rem; */
-  /* padding-top: 6rem; */
-  /* padding-bottom: 8rem; */
   letter-spacing: 0em;
 }
 
@@ -62,7 +58,7 @@
 .wtly__listItemChecked,
 .wtly__listItemUnchecked,
 .wtly__paragraph {
-  letter-spacing: 0.05em;
+  font-weight: 500;
 }
 
 /* List */

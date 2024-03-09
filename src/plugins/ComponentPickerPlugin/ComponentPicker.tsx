@@ -40,7 +40,7 @@ export class ComponentPickerOption extends MenuOption {
       keywords?: Array<string>;
       keyboardShortcut?: string;
       onSelect: (queryString: string) => void;
-    },
+    }
   ) {
     super(title);
     this.title = title;
@@ -166,7 +166,6 @@ export const ComponentPicker = ({
   <ScrollArea.Root className="wtly-component-picker__root">
     <ScrollArea.Viewport className="wtly-component-picker__viewport">
       <ul className="wtly-component-picker__ul">
-        {/* p-0 list-none m-0 tracking-wide text-xs dark:text-neutral-200 */}
         {options.map((option, i: number) => {
           const isSelected = selectedIndex === i;
           return (
@@ -176,10 +175,6 @@ export const ComponentPicker = ({
               className={
                 "wtly-component-picker__li " + (isSelected ? "selected" : "")
               }
-              // className={
-              //   "px-2 py-[0.68rem] rounded-md min-w-44 cursor-pointer " +
-              //   (isSelected ? "bg-neutral-100 dark:bg-neutral-700" : "")
-              // }
               ref={option.setRefElement}
               role="option"
               aria-selected={isSelected}
