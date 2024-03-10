@@ -16,32 +16,26 @@ const randomUsername = () =>
     style: "capital",
   });
 
-const CollaborationPlugin = ({ id }: { id: string }) => {
+export const CollaborationPlugin = ({ id }: { id: string }) => {
   const [username] = useState(randomUsername());
 
   return (
-    <>
-      {
-        <LexicalCollaborationPlugin
-          // @ts-ignore
-          id={id}
-          // @ts-ignore
-          providerFactory={(_id, yjsDocMap) => {
-            const doc = new Doc();
-            yjsDocMap.set(_id, doc);
-            return new WebsocketProvider(
-              `${process.env.NEXT_PUBLIC_BACKEND_WEBSOCKET_URL}/w`,
-              _id,
-              doc,
-            );
-          }}
-          initialEditorState={null}
-          shouldBootstrap={true}
-          username={username}
-        />
-      }
-    </>
+    <LexicalCollaborationPlugin
+      // @ts-ignore
+      id={id}
+      // @ts-ignore
+      providerFactory={(_id, yjsDocMap) => {
+        const doc = new Doc();
+        yjsDocMap.set(_id, doc);
+        return new WebsocketProvider(
+          `${process.env.NEXT_PUBLIC_BACKEND_WEBSOCKET_URL}/w`,
+          _id,
+          doc
+        );
+      }}
+      initialEditorState={null}
+      shouldBootstrap={true}
+      username={username}
+    />
   );
 };
-
-export default CollaborationPlugin;

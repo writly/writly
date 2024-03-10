@@ -3,7 +3,6 @@ import { CheckListPlugin } from "@lexical/react/LexicalCheckListPlugin";
 import { ClearEditorPlugin } from "@lexical/react/LexicalClearEditorPlugin";
 import ClickableLinkPlugin from "@lexical/react/LexicalClickableLinkPlugin";
 import {
-  InitialConfigType,
   InitialEditorStateType,
   LexicalComposer,
 } from "@lexical/react/LexicalComposer";
@@ -30,7 +29,7 @@ import { createRef, useEffect, useState } from "react";
 import { AutoLinkPlugin } from "./plugins/AutoLinkPlugin";
 import { CodeActionMenuPlugin } from "./plugins/CodeActionMenuPlugin";
 import { CodeHighlightPlugin } from "./plugins/CodeHighlightPlugin";
-import CollaborationPlugin from "./plugins/CollaborationPlugin";
+import { CollaborationPlugin } from "./plugins/CollaborationPlugin";
 import { ComponentPickerMenuPlugin } from "./plugins/ComponentPickerPlugin";
 import {
   DraggableBlockPlugin,
@@ -38,6 +37,10 @@ import {
 } from "./plugins/DraggableBlockPlugin";
 import EquationsPlugin from "./plugins/EquationsPlugin";
 import { ImagesPlugin } from "./plugins/ImagesPlugin";
+import {
+  LocalStoragePlugin,
+  localStorageKey,
+} from "./plugins/LocalStoragePlugin";
 import {
   MarkdownShortcutPlugin,
   NODES,
@@ -118,7 +121,12 @@ export const Writly = ({
       <MarkdownShortcutPlugin />
       {isClient && <ComponentPickerMenuPlugin />}
       {isClient && <CodeActionMenuPlugin />}
-      {isClient && id ? <CollaborationPlugin id={id} /> : <></>}
+      {isClient && collaborative && id ? (
+        <CollaborationPlugin id={id} />
+      ) : (
+        <></>
+      )}
+      {isClient && <LocalStoragePlugin />}
       <CodeHighlightPlugin />
       <AutoLinkPlugin />
       <ImagesPlugin />
@@ -131,3 +139,4 @@ export const Writly = ({
 };
 
 export { createHeadlessCollaborativeEditor } from "./headless";
+export { localStorageKey } from "./plugins/LocalStoragePlugin";
