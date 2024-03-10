@@ -1,10 +1,8 @@
 # Writly
 
-<br />
+`writly` is a library that offers a beautiful markdown editor. [Try it out yourself!](https://www.writ.ly)
 
-`writly` offers a user-friendly WYSIWYG markdown editor, simplifying the process of writing and collaborating.
-
-**Note: `writly` a prototype that is currently in development and has not been tested for production use.**
+**Note: `writly` a prototype that is currently in development.**
 
 ## Installation
 
@@ -20,7 +18,7 @@ import "writly/writly.css";
 
 export default function App() {
   return (
-    <div style={{ width: "100vw", height: "100vh" }}>
+    <div style={{ width: "650px" }}>
       <Writly />
     </div>
   );
@@ -29,7 +27,7 @@ export default function App() {
 
 ## Contributing
 
-`writly` is built upon [`lexical`](https://github.com/facebook/lexical), which is plugin-based. Feel free to contribute useful plugins to enhance `writly`!
+`writly` is built upon facebook's [`lexical`](https://github.com/facebook/lexical), a plugin-based platform. You are welcome to contribute useful plugins to enhance `writly`!
 
 ## License
 

@@ -1,5 +1,3 @@
-"use client";
-
 import {
   $isCodeNode,
   CODE_LANGUAGE_MAP,
@@ -80,7 +78,7 @@ const CodeActionMenuContainer = ({
       }
     },
     50,
-    1000,
+    1000
   );
 
   const updateLanguage = useCallback((language: string) => {
@@ -159,7 +157,7 @@ const CodeActionMenuContainer = ({
 };
 
 const getMouseInfo = (
-  event: MouseEvent,
+  event: MouseEvent
 ): { codeDOMNode: HTMLElement | null; isOutside: boolean } => {
   const target = event.target;
 
@@ -178,6 +176,6 @@ const getMouseInfo = (
 export const CodeActionMenuPlugin = (): React.ReactPortal | null => {
   return createPortal(
     <CodeActionMenuContainer anchorElem={document?.body} />,
-    document?.body,
+    document?.body
   );
 };

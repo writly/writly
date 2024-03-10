@@ -50,6 +50,11 @@
   background-color: rgb(153 246 228);
 }
 
+.wtly__paragraph {
+  margin-top: 0.3rem;
+  margin-bottom: 0.3rem;
+}
+
 .wtly__listItem,
 .wtly__nestedListItem,
 .wtly__ol,
@@ -197,6 +202,8 @@ hr {
   padding: 20px 0px;
   border-top-width: 0px;
   margin-bottom: 15px;
+  box-sizing: border-box;
+  border: 0;
 }
 
 hr::after {
@@ -236,6 +243,7 @@ img {
 
 span.wtly__equation {
   display: inline-block;
+  height: fit-content;
 }
 
 .wtly__equation.focused {
