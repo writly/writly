@@ -126,7 +126,7 @@ export const Writly = ({
       ) : (
         <></>
       )}
-      {isClient && <LocalStoragePlugin />}
+      {!collaborative && <LocalStoragePlugin />}
       <CodeHighlightPlugin />
       <AutoLinkPlugin />
       <ImagesPlugin />
