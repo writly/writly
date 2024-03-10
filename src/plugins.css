@@ -312,7 +312,7 @@
   cursor: text;
 }
 
-@media (min-width: 1025px) {
+@media (min-width: 640px) {
   .wtly__paragraph::after,
   .wtly__h1::after,
   .wtly__h2::after,
