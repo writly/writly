@@ -204,6 +204,9 @@ hr {
   margin-bottom: 15px;
   box-sizing: border-box;
   border: 0;
+  -webkit-user-select: none; /* Safari */
+  -ms-user-select: none; /* IE 10 and IE 11 */
+  user-select: none; /* Standard syntax */
 }
 
 hr::after {
