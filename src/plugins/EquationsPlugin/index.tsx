@@ -22,13 +22,13 @@ type CommandPayload = {
 export const INSERT_EQUATION_COMMAND: LexicalCommand<CommandPayload> =
   createCommand("INSERT_EQUATION_COMMAND");
 
-export default function EquationsPlugin(): JSX.Element | null {
+export const EquationsPlugin = () => {
   const [editor] = useLexicalComposerContext();
 
   useEffect(() => {
     if (!editor.hasNodes([EquationNode])) {
       throw new Error(
-        "EquationsPlugins: EquationsNode not registered on editor",
+        "EquationsPlugins: EquationsNode not registered on editor"
       );
     }
 
@@ -45,9 +45,9 @@ export default function EquationsPlugin(): JSX.Element | null {
 
         return true;
       },
-      COMMAND_PRIORITY_EDITOR,
+      COMMAND_PRIORITY_EDITOR
     );
   }, [editor]);
 
   return null;
-}
+};

@@ -30,12 +30,12 @@ import { AutoLinkPlugin } from "./plugins/AutoLinkPlugin";
 import { CodeActionMenuPlugin } from "./plugins/CodeActionMenuPlugin";
 import { CodeHighlightPlugin } from "./plugins/CodeHighlightPlugin";
 import { CollaborationPlugin } from "./plugins/CollaborationPlugin";
-import { ComponentPickerMenuPlugin } from "./plugins/ComponentPickerPlugin";
+import { ComponentPickerMenuPlugin } from "./plugins/ComponentPickerMenuPlugin";
 import {
   DraggableBlockPlugin,
   DraggableWrapper,
 } from "./plugins/DraggableBlockPlugin";
-import EquationsPlugin from "./plugins/EquationsPlugin";
+import { EquationsPlugin } from "./plugins/EquationsPlugin";
 import { ImagesPlugin } from "./plugins/ImagesPlugin";
 import {
   LocalStoragePlugin,
