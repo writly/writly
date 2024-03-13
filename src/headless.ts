@@ -11,7 +11,7 @@ import { registerCodeHighlighting } from "@lexical/code";
 import { Doc } from "yjs";
 
 export const createHeadlessCollaborativeEditor = (
-  nodes: Array<Klass<LexicalNode>>
+  nodes: Array<Klass<LexicalNode>>,
 ): {
   editor: LexicalEditor;
   provider: Provider;
@@ -41,7 +41,7 @@ export const createHeadlessCollaborativeEditor = (
 export const registerCollaborationListeners = (
   editor: LexicalEditor,
   provider: Provider,
-  binding: Binding
+  binding: Binding,
 ): void => {
   editor.registerUpdateListener(
     ({
@@ -61,10 +61,10 @@ export const registerCollaborationListeners = (
           dirtyElements,
           dirtyLeaves,
           normalizedNodes,
-          tags
+          tags,
         );
       }
-    }
+    },
   );
 
   binding.root.getSharedType().observeDeep((events, transaction) => {

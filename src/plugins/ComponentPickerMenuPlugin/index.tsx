@@ -33,7 +33,7 @@ export const ComponentPickerMenuPlugin = (): JSX.Element => {
       ...baseOptions.filter(
         (option) =>
           regex.test(option.title) ||
-          option.keywords.some((keyword) => regex.test(keyword))
+          option.keywords.some((keyword) => regex.test(keyword)),
       ),
     ];
   }, [editor, queryString]);
@@ -43,7 +43,7 @@ export const ComponentPickerMenuPlugin = (): JSX.Element => {
       selectedOption: ComponentPickerOption,
       nodeToRemove: TextNode | null,
       closeMenu: () => void,
-      matchingString: string
+      matchingString: string,
     ) => {
       editor.update(() => {
         nodeToRemove?.remove();
@@ -51,7 +51,7 @@ export const ComponentPickerMenuPlugin = (): JSX.Element => {
         closeMenu();
       });
     },
-    [editor]
+    [editor],
   );
 
   return (
@@ -62,7 +62,7 @@ export const ComponentPickerMenuPlugin = (): JSX.Element => {
       options={options}
       menuRenderFn={(
         anchorElementRef,
-        { selectedIndex, selectOptionAndCleanUp, setHighlightedIndex }
+        { selectedIndex, selectOptionAndCleanUp, setHighlightedIndex },
       ) => {
         return anchorElementRef.current && options.length
           ? ReactDOM.createPortal(
@@ -72,7 +72,7 @@ export const ComponentPickerMenuPlugin = (): JSX.Element => {
                 selectOptionAndCleanUp={selectOptionAndCleanUp}
                 setHighlightedIndex={setHighlightedIndex}
               />,
-              anchorElementRef.current
+              anchorElementRef.current,
             )
           : null;
       }}

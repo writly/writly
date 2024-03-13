@@ -45,7 +45,7 @@ export default function EquationComponent({
         }
       });
     },
-    [editor, equationValue, nodeKey]
+    [editor, equationValue, nodeKey],
   );
 
   useEffect(() => {
@@ -67,7 +67,7 @@ export default function EquationComponent({
             }
             return false;
           },
-          COMMAND_PRIORITY_HIGH
+          COMMAND_PRIORITY_HIGH,
         ),
         editor.registerCommand(
           KEY_ESCAPE_COMMAND,
@@ -80,8 +80,8 @@ export default function EquationComponent({
             }
             return false;
           },
-          COMMAND_PRIORITY_HIGH
-        )
+          COMMAND_PRIORITY_HIGH,
+        ),
       );
     } else {
       return editor.registerUpdateListener(({ editorState }) => {

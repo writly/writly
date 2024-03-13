@@ -101,7 +101,7 @@ export default function ImageComponent({
       }
       return false;
     },
-    [isSelected, nodeKey]
+    [isSelected, nodeKey],
   );
 
   const onClick = useCallback(
@@ -123,7 +123,7 @@ export default function ImageComponent({
 
       return false;
     },
-    [isResizing, isSelected, setSelected, clearSelection]
+    [isResizing, isSelected, setSelected, clearSelection],
   );
 
   useEffect(() => {
@@ -141,12 +141,12 @@ export default function ImageComponent({
           activeEditorRef.current = activeEditor;
           return false;
         },
-        COMMAND_PRIORITY_LOW
+        COMMAND_PRIORITY_LOW,
       ),
       editor.registerCommand<MouseEvent>(
         CLICK_COMMAND,
         onClick,
-        COMMAND_PRIORITY_LOW
+        COMMAND_PRIORITY_LOW,
       ),
 
       editor.registerCommand(
@@ -158,18 +158,18 @@ export default function ImageComponent({
           }
           return false;
         },
-        COMMAND_PRIORITY_LOW
+        COMMAND_PRIORITY_LOW,
       ),
       editor.registerCommand(
         KEY_DELETE_COMMAND,
         onDelete,
-        COMMAND_PRIORITY_LOW
+        COMMAND_PRIORITY_LOW,
       ),
       editor.registerCommand(
         KEY_BACKSPACE_COMMAND,
         onDelete,
-        COMMAND_PRIORITY_LOW
-      )
+        COMMAND_PRIORITY_LOW,
+      ),
     );
 
     return () => {
@@ -189,7 +189,7 @@ export default function ImageComponent({
 
   const onResizeEnd = (
     nextWidth: "inherit" | number,
-    nextHeight: "inherit" | number
+    nextHeight: "inherit" | number,
   ) => {
     setTimeout(() => {
       setIsResizing(false);

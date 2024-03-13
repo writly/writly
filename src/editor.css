@@ -65,6 +65,10 @@
   font-weight: 500;
 }
 
+.wtly__textBold {
+  font-weight: 800;
+}
+
 /* List */
 
 .wtly__ol,

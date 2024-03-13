@@ -1,8 +1,7 @@
 # Writly
 
-`writly` is a library that offers a beautiful markdown editor. [Try it out yourself!](https://www.writ.ly)
+`writly` is a library that offers a markdown WYSIWYG editor as a react component. It's built upon facebook's `lexical` and `lexical-playground` to ensure best performance. [Try it out yourself!](https://www.writ.ly)
 
-**Note: `writly` a prototype that is currently in development.**
 
 ## Installation
 
@@ -25,9 +24,19 @@ export default function App() {
 }
 ```
 
-## Contributing
+## Development
 
-`writly` is built upon facebook's [`lexical`](https://github.com/facebook/lexical), a plugin-based platform. You are welcome to contribute useful plugins to enhance `writly`!
+Feel free to add any useful `lexical` plugins!
+
+1. Clone the repository
+
+2. Install dependencies:
+
+- `npm install`
+
+3. Start the local Storybook server:
+
+- `npm run storybook`
 
 ## License
 

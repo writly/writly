@@ -16,7 +16,7 @@ import {
 } from "lexical";
 
 export const setNodePlaceholderFromSelection = (
-  editor: LexicalEditor
+  editor: LexicalEditor,
 ): void => {
   editor.getEditorState().read(() => {
     const selection = $getSelection();

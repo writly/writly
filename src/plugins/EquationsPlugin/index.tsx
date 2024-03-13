@@ -28,7 +28,7 @@ export const EquationsPlugin = () => {
   useEffect(() => {
     if (!editor.hasNodes([EquationNode])) {
       throw new Error(
-        "EquationsPlugins: EquationsNode not registered on editor"
+        "EquationsPlugins: EquationsNode not registered on editor",
       );
     }
 
@@ -45,7 +45,7 @@ export const EquationsPlugin = () => {
 
         return true;
       },
-      COMMAND_PRIORITY_EDITOR
+      COMMAND_PRIORITY_EDITOR,
     );
   }, [editor]);
 

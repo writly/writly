@@ -30,7 +30,7 @@ export const CollaborationPlugin = ({ id }: { id: string }) => {
         return new WebsocketProvider(
           `${process.env.NEXT_PUBLIC_BACKEND_WEBSOCKET_URL}/w`,
           _id,
-          doc
+          doc,
         );
       }}
       initialEditorState={null}

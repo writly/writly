@@ -10,7 +10,7 @@ export const LocalStoragePlugin = () => {
   useEffect(() => {
     const state = editor.parseEditorState(
       (localStorage?.getItem(localStorageKey) ||
-        editor.getEditorState().toJSON()) as string
+        editor.getEditorState().toJSON()) as string,
     );
     editor.setEditorState(state);
     editor.focus();
