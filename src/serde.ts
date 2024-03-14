@@ -7,7 +7,7 @@ import { NODES } from "./plugins/MarkdownShortcutPlugin";
 import { hashCode } from "./utils";
 
 export const getEditorStateAsYjsUpdate = (
-  ref: MutableRefObject<LexicalEditor | null>
+  ref: MutableRefObject<LexicalEditor | null>,
 ) => {
   const editor = ref.current;
 
@@ -36,17 +36,13 @@ export const convertHTMLToYjsUpdate = (html?: string) => {
   headlessEditor.update(
     () => {
       const parser = new DOMParser();
-
-
-
       const dom = parser.parseFromString(html, "text/html");
-
       const nodes = $generateNodesFromDOM(headlessEditor, dom);
 
       $getRoot().select();
       $insertNodes(nodes);
     },
-    { discrete: true }
+    { discrete: true },
   );
 
   const yjsUpdate = encodeStateAsUpdate(binding.doc).buffer;
@@ -55,7 +51,7 @@ export const convertHTMLToYjsUpdate = (html?: string) => {
 };
 
 export const getEditorStateAsHTML = async (
-  ref: MutableRefObject<LexicalEditor | null>
+  ref: MutableRefObject<LexicalEditor | null>,
 ) => {
   const editor = ref.current;
 

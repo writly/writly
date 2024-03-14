@@ -1,6 +1,6 @@
 "use client";
 
-import { Writly, WritlyRef, getContentAsHTML } from "writly";
+import { Writly, getContentAsHTML } from "writly";
 
 export default function Home() {
   return (

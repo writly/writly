@@ -69,8 +69,6 @@ export interface WritlyProps {
   html?: HTMLConfig;
 }
 
-export const WritlyRef = createRef<LexicalEditor>();
-
 export const Writly = forwardRef<
   MutableRefObject<LexicalEditor> | null,
   WritlyProps
@@ -80,7 +78,7 @@ export const Writly = forwardRef<
   useEffect(() => {
     setIsClient(true);
   }, []);
-  
+
   return (
     <LexicalComposer
       initialConfig={{
@@ -145,7 +143,3 @@ export const Writly = forwardRef<
     </LexicalComposer>
   );
 });
-
-export { createHeadlessCollaborativeEditor } from "./headless";
-export { getLocalStorageKey } from "./plugins/LocalStoragePlugin";
-export type { LexicalEditor } from "lexical";
