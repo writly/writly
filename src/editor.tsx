@@ -37,10 +37,7 @@ import {
 } from "./plugins/DraggableBlockPlugin";
 import { EquationsPlugin } from "./plugins/EquationsPlugin";
 import { ImagesPlugin } from "./plugins/ImagesPlugin";
-import {
-  LocalStoragePlugin,
-  localStorageKey,
-} from "./plugins/LocalStoragePlugin";
+import { LocalStoragePlugin } from "./plugins/LocalStoragePlugin";
 import {
   MarkdownShortcutPlugin,
   NODES,
@@ -126,7 +123,7 @@ export const Writly = ({
       ) : (
         <></>
       )}
-      {!collaborative && <LocalStoragePlugin />}
+      {!collaborative && <LocalStoragePlugin id={id} />}
       <CodeHighlightPlugin />
       <AutoLinkPlugin />
       <ImagesPlugin />
@@ -139,4 +136,4 @@ export const Writly = ({
 };
 
 export { createHeadlessCollaborativeEditor } from "./headless";
-export { localStorageKey } from "./plugins/LocalStoragePlugin";
+export { getLocalStorageKey } from "./plugins/LocalStoragePlugin";

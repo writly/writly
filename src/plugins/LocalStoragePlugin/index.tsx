@@ -2,15 +2,15 @@ import { useLexicalComposerContext } from "@lexical/react/LexicalComposerContext
 import { OnChangePlugin } from "@lexical/react/LexicalOnChangePlugin";
 import { useEffect } from "react";
 
-export const localStorageKey = "wtly";
+export const getLocalStorageKey = (id?: string) => `wtly__${id}`;
 
-export const LocalStoragePlugin = () => {
+export const LocalStoragePlugin = ({ id }: { id?: string }) => {
   const [editor] = useLexicalComposerContext();
 
   useEffect(() => {
     const state = editor.parseEditorState(
-      (localStorage?.getItem(localStorageKey) ||
-        editor.getEditorState().toJSON()) as string,
+      (localStorage?.getItem(getLocalStorageKey(id)) ||
+        editor.getEditorState().toJSON()) as string
     );
     editor.setEditorState(state);
     editor.focus();
@@ -21,7 +21,7 @@ export const LocalStoragePlugin = () => {
       onChange={(editorState) => {
         editorState.read(() => {
           const value = JSON.stringify(editorState);
-          localStorage.setItem(localStorageKey, value);
+          localStorage.setItem(getLocalStorageKey(id), value);
         });
       }}
     />
