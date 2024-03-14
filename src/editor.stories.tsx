@@ -1,10 +1,10 @@
 import type { Meta, StoryObj } from "@storybook/react";
+import { LexicalEditor } from "lexical";
+import { createRef } from "react";
 import { Writly } from ".";
 import "./editor.css";
-import "./plugins.css";
 import "./font.css";
-import { createRef } from "react";
-import { LexicalEditor } from "lexical";
+import "./plugins.css";
 
 //👇 This default export determines where your story goes in the story list
 const meta: Meta<typeof Writly> = {
@@ -33,7 +33,5 @@ type Story = StoryObj<typeof Writly>;
 const WritlyRef = createRef<LexicalEditor>();
 
 export const Base: Story = {
-  args: {
-    ref: WritlyRef,
-  },
+  args: {},
 };

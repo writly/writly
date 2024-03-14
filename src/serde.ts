@@ -1,15 +1,23 @@
 import { $generateHtmlFromNodes, $generateNodesFromDOM } from "@lexical/html";
-import { $getRoot, $insertNodes } from "lexical";
+import { $getRoot, $insertNodes, LexicalEditor } from "lexical";
+import { MutableRefObject } from "react";
 import { encodeStateAsUpdate } from "yjs";
-import { WritlyRef, createHeadlessCollaborativeEditor } from "./editor";
+import { createHeadlessCollaborativeEditor } from "./editor";
 import { NODES } from "./plugins/MarkdownShortcutPlugin";
-import { theme } from "./theme";
+import { hashCode } from "./utils";
 
-export const getContentAsYjsUpdate = () => {
-  const editor = WritlyRef.current!;
+export const getEditorStateAsYjsUpdate = (
+  ref: MutableRefObject<LexicalEditor | null>
+) => {
+  const editor = ref.current;
+
+  if (!editor) {
+    return;
+  }
 
   const { binding, editor: headlessEditor } =
     createHeadlessCollaborativeEditor(NODES);
+
   headlessEditor.setEditorState(editor.getEditorState());
 
   const yjsUpdate = encodeStateAsUpdate(binding.doc).buffer;
@@ -17,7 +25,11 @@ export const getContentAsYjsUpdate = () => {
   return yjsUpdate;
 };
 
-export const convertHTMLToYjsUpdate = () => {
+export const convertHTMLToYjsUpdate = (id?: string) => {
+  if (!id) {
+    return;
+  }
+
   const { binding, editor: headlessEditor } =
     createHeadlessCollaborativeEditor(NODES);
 
@@ -25,29 +37,39 @@ export const convertHTMLToYjsUpdate = () => {
     () => {
       const parser = new DOMParser();
 
-      const dom = parser.parseFromString(
-        document!.getElementsByClassName(theme.root!)[0]?.outerHTML!,
-        "text/html",
-      );
+      const html = document!.getElementById(hashCode(id))?.outerHTML;
+
+      if (!html) {
+        return;
+      }
+
+      const dom = parser.parseFromString(html, "text/html");
 
       const nodes = $generateNodesFromDOM(headlessEditor, dom);
 
       $getRoot().select();
       $insertNodes(nodes);
     },
-    { discrete: true },
+    { discrete: true }
   );
 
   const yjsUpdate = encodeStateAsUpdate(binding.doc).buffer;
 
   return yjsUpdate;
 };
-export const getContentAsHTML = async () => {
-  const editor = WritlyRef.current!;
+
+export const getEditorStateAsHTML = async (
+  ref: MutableRefObject<LexicalEditor | null>
+) => {
+  const editor = ref.current;
+
+  if (!editor) {
+    return;
+  }
 
   const promise = new Promise<string>((resolve, reject) => {
     editor._editorState.read(async () => {
-      const html = $generateHtmlFromNodes(WritlyRef.current!, null);
+      const html = $generateHtmlFromNodes(editor, null);
       resolve(html);
     });
   });

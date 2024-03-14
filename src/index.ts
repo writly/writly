@@ -1,7 +1,7 @@
 export { Writly, WritlyRef } from "./editor";
 export type { WritlyProps } from "./editor";
 export {
-  getContentAsHTML,
+  getEditorStateAsHTML,
   convertHTMLToYjsUpdate,
-  getContentAsYjsUpdate,
+  getEditorStateAsYjsUpdate,
 } from "./serde";

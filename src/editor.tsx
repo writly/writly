@@ -24,7 +24,13 @@ import {
   LexicalNode,
   LexicalNodeReplacement,
 } from "lexical";
-import { createRef, useEffect, useState } from "react";
+import {
+  MutableRefObject,
+  createRef,
+  forwardRef,
+  useEffect,
+  useState,
+} from "react";
 
 import { AutoLinkPlugin } from "./plugins/AutoLinkPlugin";
 import { CodeActionMenuPlugin } from "./plugins/CodeActionMenuPlugin";
@@ -45,6 +51,7 @@ import {
 import { MaxLengthPlugin } from "./plugins/MaxLengthPlugin";
 import { PlaceholderPlugin } from "./plugins/PlaceholderPlugin";
 import { theme } from "./theme";
+import { hashCode } from "./utils";
 
 export interface WritlyProps {
   id?: string;
@@ -64,17 +71,17 @@ export interface WritlyProps {
 
 export const WritlyRef = createRef<LexicalEditor>();
 
-export const Writly = ({
-  id,
-  collaborative = false,
-  maxLength,
-  ...props
-}: WritlyProps) => {
+export const Writly = forwardRef<
+  MutableRefObject<LexicalEditor> | null,
+  WritlyProps
+>(({ id, collaborative = false, maxLength, ...props }, ref) => {
   const [isClient, setIsClient] = useState<boolean>(false);
 
   useEffect(() => {
     setIsClient(true);
   }, []);
+
+  console.log(ref);
 
   return (
     <LexicalComposer
@@ -97,7 +104,7 @@ export const Writly = ({
       <RichTextPlugin
         contentEditable={
           <DraggableWrapper>
-            <ContentEditable spellCheck={false} />
+            <ContentEditable spellCheck={false} id={hashCode(id)} />
           </DraggableWrapper>
         }
         placeholder={<></>}
@@ -111,7 +118,13 @@ export const Writly = ({
       <HashtagPlugin />
       <ListPlugin />
       <TabIndentationPlugin />
-      <EditorRefPlugin editorRef={WritlyRef} />
+      {ref ? (
+        <EditorRefPlugin
+          editorRef={ref as MutableRefObject<LexicalEditor | null>}
+        />
+      ) : (
+        <></>
+      )}
       <HorizontalRulePlugin />
       <ClearEditorPlugin />
       {/* Custom Plugins */}
@@ -133,7 +146,7 @@ export const Writly = ({
       <PlaceholderPlugin />
     </LexicalComposer>
   );
-};
+});
 
 export { createHeadlessCollaborativeEditor } from "./headless";
 export { getLocalStorageKey } from "./plugins/LocalStoragePlugin";
