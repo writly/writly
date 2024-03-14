@@ -80,9 +80,7 @@ export const Writly = forwardRef<
   useEffect(() => {
     setIsClient(true);
   }, []);
-
-  console.log(ref);
-
+  
   return (
     <LexicalComposer
       initialConfig={{
