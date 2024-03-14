@@ -24,6 +24,23 @@ export default function App() {
 }
 ```
 
+If you need to access the underlying LexicalEditor instance, you can pass a reference to it.
+
+```jsx
+import { Writly } from "writly";
+import "writly/writly.css";
+import React from "react";
+
+export default function App() {
+  const ref = React.createRef();
+  return (
+    <div style={{ width: "650px" }}>
+      <Writly ref={ref} />
+    </div>
+  );
+}
+```
+
 ## Development
 
 Feel free to add any useful `lexical` plugins!
