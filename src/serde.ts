@@ -2,9 +2,8 @@ import { $generateHtmlFromNodes, $generateNodesFromDOM } from "@lexical/html";
 import { $getRoot, $insertNodes, LexicalEditor } from "lexical";
 import { MutableRefObject } from "react";
 import { encodeStateAsUpdate } from "yjs";
-import { createHeadlessCollaborativeEditor } from "./editor";
+import { createHeadlessCollaborativeEditor } from "./headless";
 import { NODES } from "./plugins/MarkdownShortcutPlugin";
-import { hashCode } from "./utils";
 
 export const getEditorStateAsYjsUpdate = (
   ref: MutableRefObject<LexicalEditor | null>,
