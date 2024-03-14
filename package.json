@@ -1,6 +1,6 @@
 {
   "name": "writly",
-  "version": "0.1.0-alpha.7",
+  "version": "0.1.0-alpha.8",
   "private": false,
   "scripts": {
     "build-css": "npx concat -o writly.css src/editor.css src/plugins.css",
