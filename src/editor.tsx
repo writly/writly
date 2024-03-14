@@ -148,3 +148,4 @@ export const Writly = forwardRef<
 
 export { createHeadlessCollaborativeEditor } from "./headless";
 export { getLocalStorageKey } from "./plugins/LocalStoragePlugin";
+export type { LexicalEditor } from "lexical";

@@ -25,8 +25,8 @@ export const getEditorStateAsYjsUpdate = (
   return yjsUpdate;
 };
 
-export const convertHTMLToYjsUpdate = (id?: string) => {
-  if (!id) {
+export const convertHTMLToYjsUpdate = (html?: string) => {
+  if (!html) {
     return;
   }
 
@@ -37,11 +37,7 @@ export const convertHTMLToYjsUpdate = (id?: string) => {
     () => {
       const parser = new DOMParser();
 
-      const html = document!.getElementById(hashCode(id))?.outerHTML;
 
-      if (!html) {
-        return;
-      }
 
       const dom = parser.parseFromString(html, "text/html");
 
