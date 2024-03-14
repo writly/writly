@@ -1,6 +1,6 @@
 # Writly
 
-`writly` is a library that offers a markdown WYSIWYG editor as a react component. It's built upon facebook's `lexical` and `lexical-playground` to ensure best performance. [Try it out yourself!](https://www.writ.ly)
+`writly` is a library that offers a markdown WYSIWYG editor as a react component. It's built upon facebook's `lexical` and `lexical-playground` to ensure performant rich text editing. [Try it out yourself!](https://www.writ.ly)
 
 
 ## Installation
@@ -24,7 +24,7 @@ export default function App() {
 }
 ```
 
-If you need to access the underlying LexicalEditor instance, you can pass a reference to it.
+If you need to access the underlying `LexicalEditor` instance, you can pass a reference to `Writly`.
 
 ```jsx
 import { Writly } from "writly";
@@ -32,7 +32,7 @@ import "writly/writly.css";
 import React from "react";
 
 export default function App() {
-  const ref = React.createRef();
+  const ref = useRef();
   return (
     <div style={{ width: "650px" }}>
       <Writly ref={ref} />
