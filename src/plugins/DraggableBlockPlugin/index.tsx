@@ -80,12 +80,12 @@ const draggableStore = createWithEqualityFn<
           false,
           {
             type: "resetState",
-          },
+          }
         );
       },
     }),
-    { name: "draggableStore" },
-  ),
+    { name: "draggableStore" }
+  )
 );
 
 const useDraggableLineStore = () =>
@@ -94,7 +94,7 @@ const useDraggableLineStore = () =>
 const useDraggableStore = () =>
   draggableStore(
     ({ draggable, resetState }) => ({ draggable, resetState }),
-    shallow,
+    shallow
   );
 
 const DRAGGABLE_KEY = "draggable-key";
@@ -143,7 +143,7 @@ export const DraggableBlockPlugin = () => {
         <DraggableElement />
         <OnDragLine />
       </>,
-      wrapperHTMLElement,
+      wrapperHTMLElement
     )
   ) : (
     <></>
@@ -209,7 +209,7 @@ const useDragListeners = () => {
       DRAGOVER_COMMAND,
       // @ts-ignore
       (event) => handleOnDragEnter(event),
-      COMMAND_PRIORITY_LOW,
+      COMMAND_PRIORITY_LOW
     );
   }, [editor, handleOnDragEnter]);
 };
@@ -243,7 +243,7 @@ const useOnDragEnter = () => {
       }
       return true;
     },
-    [editor],
+    [editor]
   );
   return { handleOnDragEnter };
 };
@@ -328,7 +328,7 @@ const useOnDrop = () => {
       (event) => {
         return handleOnDrop(event as unknown as DragEvent);
       },
-      COMMAND_PRIORITY_HIGH,
+      COMMAND_PRIORITY_HIGH
     );
   }, [editor, handleOnDrop]);
 
@@ -345,7 +345,7 @@ const _DraggableElement = () => {
       }
       dataTransfer.setDragImage(draggable.htmlElement, 0, 0);
     },
-    [draggable?.htmlElement],
+    [draggable?.htmlElement]
   );
 
   if (!draggable?.data) {

@@ -395,6 +395,28 @@
   min-height: 3rem /* 48px */;
 }
 
+/* FloatingTextFormatToolbarPlugin */
+
+.wtly-floating-toolbar__popup {
+  display: flex;
+  background: #fff;
+  padding: 4px;
+  vertical-align: middle;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 10;
+  opacity: 0;
+  box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.3);
+  border-radius: 8px;
+  transition: opacity 0.5s;
+  height: 35px;
+  will-change: transform;
+}
+
+.wtly-floating-toolbar__icon {
+}
+
 /* ImagesPlugin */
 
 .wtly-image__draggable {

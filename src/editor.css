@@ -1,3 +1,12 @@
+/* Editor Wrapper */
+
+.wtly__editor {
+  flex: auto;
+  position: relative;
+  resize: vertical;
+  z-index: -1;
+}
+
 /* Root */
 .wtly__root {
   outline: 2px solid transparent;
