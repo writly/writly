@@ -129,29 +129,23 @@ export const FloatingTextFormatToolbar = ({
 
   return (
     <div ref={toolbarRef} className="wtly-floating-toolbar__popup">
-      <button>
-        <Bold strokeWidth={2.5} className="wtly-floating-toolbar__icon" />
+      <button className="wtly-floating-toolbar__icon">
+        <Bold strokeWidth={1.8} />
       </button>
-      <button>
-        <Italic strokeWidth={2.5} className="wtly-floating-toolbar__icon" />
+      <button className="wtly-floating-toolbar__icon">
+        <Italic strokeWidth={1.8} />
       </button>
-      <button>
-        <Underline strokeWidth={2.5} className="wtly-floating-toolbar__icon" />
+      <button className="wtly-floating-toolbar__icon">
+        <Underline strokeWidth={1.8} />
       </button>
-      <button>
-        <Strikethrough
-          strokeWidth={2.5}
-          className="wtly-floating-toolbar__icon"
-        />
+      <button className="wtly-floating-toolbar__icon">
+        <Strikethrough strokeWidth={1.8} />
       </button>
-      <button>
-        <Subscript strokeWidth={2.5} className="wtly-floating-toolbar__icon" />
+      <button className="wtly-floating-toolbar__icon">
+        <Subscript strokeWidth={1.8} />
       </button>
-      <button>
-        <Superscript
-          strokeWidth={2.5}
-          className="wtly-floating-toolbar__icon"
-        />
+      <button className="wtly-floating-toolbar__icon">
+        <Superscript strokeWidth={1.8} />
       </button>
     </div>
   );

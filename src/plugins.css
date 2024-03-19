@@ -407,14 +407,21 @@
   left: 0;
   z-index: 10;
   opacity: 0;
-  box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.3);
+  box-shadow: 0px 3px 20px rgba(0, 0, 0, 0.3);
   border-radius: 8px;
   transition: opacity 0.5s;
-  height: 35px;
   will-change: transform;
+  gap: 8px;
 }
 
 .wtly-floating-toolbar__icon {
+  background-color: transparent;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 0px;
+  width: 30px;
+  height: 30px;
 }
 
 /* ImagesPlugin */
