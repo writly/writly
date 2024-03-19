@@ -399,6 +399,8 @@
 
 .wtly-floating-toolbar__popup {
   display: flex;
+  justify-content: center;
+  align-items: center;
   background: #fff;
   padding: 4px;
   vertical-align: middle;
@@ -417,11 +419,17 @@
 .wtly-floating-toolbar__icon {
   background-color: transparent;
   display: flex;
-  justify-content: center;
-  align-items: center;
+
   border: 0px;
-  width: 30px;
-  height: 30px;
+  width: 27px;
+  height: 27px;
+}
+
+.wtly-floating-toolbar__separator {
+  height: 20px;
+  width: 1px;
+  margin: 0 3px;
+  background-color: #cccccc;
 }
 
 /* ImagesPlugin */

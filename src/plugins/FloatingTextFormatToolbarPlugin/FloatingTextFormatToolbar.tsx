@@ -7,13 +7,19 @@ import {
 import { $getSelection } from "lexical";
 import {
   Bold,
+  Code,
   Italic,
+  List,
+  ListOrdered,
   Strikethrough,
   Subscript,
   Superscript,
   Underline,
 } from "lucide-react";
 import { useCallback, useEffect, useRef } from "react";
+import { Root as SeparatorRoot } from "@radix-ui/react-separator";
+
+const strokeWidth = 1.6;
 
 export const FloatingTextFormatToolbar = ({
   editor,
@@ -130,22 +136,30 @@ export const FloatingTextFormatToolbar = ({
   return (
     <div ref={toolbarRef} className="wtly-floating-toolbar__popup">
       <button className="wtly-floating-toolbar__icon">
-        <Bold strokeWidth={1.8} />
+        <Bold strokeWidth={strokeWidth} />
       </button>
       <button className="wtly-floating-toolbar__icon">
-        <Italic strokeWidth={1.8} />
+        <Italic strokeWidth={strokeWidth} />
       </button>
       <button className="wtly-floating-toolbar__icon">
-        <Underline strokeWidth={1.8} />
+        <Underline strokeWidth={strokeWidth} />
       </button>
       <button className="wtly-floating-toolbar__icon">
-        <Strikethrough strokeWidth={1.8} />
+        <Strikethrough strokeWidth={strokeWidth} />
       </button>
       <button className="wtly-floating-toolbar__icon">
-        <Subscript strokeWidth={1.8} />
+        <Code strokeWidth={strokeWidth} />
+      </button>
+      <SeparatorRoot
+        decorative
+        orientation="vertical"
+        className="wtly-floating-toolbar__separator"
+      />
+      <button className="wtly-floating-toolbar__icon">
+        <List strokeWidth={strokeWidth} />
       </button>
       <button className="wtly-floating-toolbar__icon">
-        <Superscript strokeWidth={1.8} />
+        <ListOrdered strokeWidth={strokeWidth} />
       </button>
     </div>
   );
