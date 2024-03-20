@@ -8,9 +8,13 @@ import { $getSelection } from "lexical";
 import {
   Bold,
   Code,
+  Heading1,
+  Heading2,
+  Heading3,
   Italic,
   List,
   ListOrdered,
+  ListTodo,
   Strikethrough,
   Subscript,
   Superscript,
@@ -160,6 +164,23 @@ export const FloatingTextFormatToolbar = ({
       </button>
       <button className="wtly-floating-toolbar__icon">
         <ListOrdered strokeWidth={strokeWidth} />
+      </button>
+      <button className="wtly-floating-toolbar__icon">
+        <ListTodo strokeWidth={strokeWidth} />
+      </button>
+      <SeparatorRoot
+        decorative
+        orientation="vertical"
+        className="wtly-floating-toolbar__separator"
+      />
+      <button className="wtly-floating-toolbar__icon">
+        <Heading1 strokeWidth={strokeWidth} />
+      </button>
+      <button className="wtly-floating-toolbar__icon">
+        <Heading2 strokeWidth={strokeWidth} />
+      </button>
+      <button className="wtly-floating-toolbar__icon">
+        <Heading3 strokeWidth={strokeWidth} />
       </button>
     </div>
   );
