@@ -78,6 +78,22 @@
   font-weight: 800;
 }
 
+.wtly__textUnderline {
+  text-decoration: underline;
+}
+
+.wtly__textItalic {
+  font-style: italic;
+}
+
+.wtly__textStrikethrough {
+  text-decoration: line-through;
+}
+
+.wtly__textUnderlineStrikethrough {
+  text-decoration: underline line-through;
+}
+
 /* List */
 
 .wtly__ol,
@@ -153,6 +169,8 @@
   cursor: pointer;
   outline: 2px solid transparent;
   outline-offset: 2px;
+  border: 2px solid #e5e7eb;
+  box-sizing: border-box;
 }
 
 .wtly__listItemUnchecked:before {
@@ -194,10 +212,12 @@
   left: 5px;
   right: 5px;
   transform: rotate(45deg);
+  border: 2px solid #e5e7eb;
   border-top-width: 0px;
   border-left-width: 0px;
   border-right-width: 2px;
   border-bottom-width: 2px;
+  box-sizing: border-box;
 }
 
 .dark .wtly__listItemChecked:after {

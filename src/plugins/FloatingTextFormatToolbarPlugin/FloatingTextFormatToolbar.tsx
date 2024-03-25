@@ -1,10 +1,21 @@
-import { mergeRegister } from "@lexical/utils";
 import {
+  INSERT_CHECK_LIST_COMMAND,
+  INSERT_ORDERED_LIST_COMMAND,
+  INSERT_UNORDERED_LIST_COMMAND,
+  REMOVE_LIST_COMMAND,
+} from "@lexical/list";
+import { $createHeadingNode } from "@lexical/rich-text";
+import { $setBlocksType } from "@lexical/selection";
+import { mergeRegister } from "@lexical/utils";
+import { Root as SeparatorRoot } from "@radix-ui/react-separator";
+import {
+  $createParagraphNode,
+  $getSelection,
   COMMAND_PRIORITY_LOW,
+  FORMAT_TEXT_COMMAND,
   LexicalEditor,
   SELECTION_CHANGE_COMMAND,
 } from "lexical";
-import { $getSelection } from "lexical";
 import {
   Bold,
   Code,
@@ -16,21 +27,49 @@ import {
   ListOrdered,
   ListTodo,
   Strikethrough,
-  Subscript,
-  Superscript,
   Underline,
 } from "lucide-react";
 import { useCallback, useEffect, useRef } from "react";
-import { Root as SeparatorRoot } from "@radix-ui/react-separator";
 
 const strokeWidth = 1.6;
+const dynamicStrokeWidth = (on: boolean) => {
+  return strokeWidth + (on ? 0.5 : 0);
+};
 
 export const FloatingTextFormatToolbar = ({
   editor,
   anchorElem,
+  isLink,
+  isBold,
+  isItalic,
+  isUnderline,
+  isCode,
+  isStrikethrough,
+  isSubscript,
+  isSuperscript,
+  isUnorderedList,
+  isOrderedList,
+  isCheckList,
+  isHeading1,
+  isHeading2,
+  isHeading3,
 }: {
   editor: LexicalEditor;
   anchorElem: HTMLElement;
+  isBold: boolean;
+  isCode: boolean;
+  isItalic: boolean;
+  isLink: boolean;
+  isStrikethrough: boolean;
+  isSubscript: boolean;
+  isSuperscript: boolean;
+  isUnderline: boolean;
+  isUnorderedList: boolean;
+  isOrderedList: boolean;
+  isCheckList: boolean;
+  isHeading1: boolean;
+  isHeading2: boolean;
+  isHeading3: boolean;
 }) => {
   const toolbarRef = useRef<HTMLDivElement | null>(null);
 
@@ -139,48 +178,137 @@ export const FloatingTextFormatToolbar = ({
 
   return (
     <div ref={toolbarRef} className="wtly-floating-toolbar__popup">
-      <button className="wtly-floating-toolbar__icon">
-        <Bold strokeWidth={strokeWidth} />
+      <button
+        onClick={() => editor.dispatchCommand(FORMAT_TEXT_COMMAND, "bold")}
+        className={"wtly-floating-toolbar__icon " + (isBold ? "active" : "")}
+      >
+        <Bold strokeWidth={dynamicStrokeWidth(isBold)} />
       </button>
-      <button className="wtly-floating-toolbar__icon">
-        <Italic strokeWidth={strokeWidth} />
+      <button
+        onClick={() => editor.dispatchCommand(FORMAT_TEXT_COMMAND, "italic")}
+        className={"wtly-floating-toolbar__icon " + (isItalic ? "active" : "")}
+      >
+        <Italic strokeWidth={dynamicStrokeWidth(isItalic)} />
       </button>
-      <button className="wtly-floating-toolbar__icon">
-        <Underline strokeWidth={strokeWidth} />
+      <button
+        onClick={() => editor.dispatchCommand(FORMAT_TEXT_COMMAND, "underline")}
+        className={
+          "wtly-floating-toolbar__icon " + (isUnderline ? "active" : "")
+        }
+      >
+        <Underline strokeWidth={dynamicStrokeWidth(isUnderline)} />
       </button>
-      <button className="wtly-floating-toolbar__icon">
-        <Strikethrough strokeWidth={strokeWidth} />
+      <button
+        onClick={() =>
+          editor.dispatchCommand(FORMAT_TEXT_COMMAND, "strikethrough")
+        }
+        className={
+          "wtly-floating-toolbar__icon " + (isStrikethrough ? "active" : "")
+        }
+      >
+        <Strikethrough strokeWidth={dynamicStrokeWidth(isStrikethrough)} />
       </button>
-      <button className="wtly-floating-toolbar__icon">
-        <Code strokeWidth={strokeWidth} />
+      <button
+        onClick={() => editor.dispatchCommand(FORMAT_TEXT_COMMAND, "code")}
+        className={"wtly-floating-toolbar__icon " + (isCode ? "active" : "")}
+      >
+        <Code strokeWidth={dynamicStrokeWidth(isCode)} />
       </button>
       <SeparatorRoot
         decorative
         orientation="vertical"
         className="wtly-floating-toolbar__separator"
       />
-      <button className="wtly-floating-toolbar__icon">
-        <List strokeWidth={strokeWidth} />
+      <button
+        onClick={() =>
+          editor.dispatchCommand(
+            isUnorderedList
+              ? REMOVE_LIST_COMMAND
+              : INSERT_UNORDERED_LIST_COMMAND,
+            undefined
+          )
+        }
+        className={
+          "wtly-floating-toolbar__icon " + (isUnorderedList ? "active" : "")
+        }
+      >
+        <List strokeWidth={dynamicStrokeWidth(isUnorderedList)} />
       </button>
-      <button className="wtly-floating-toolbar__icon">
-        <ListOrdered strokeWidth={strokeWidth} />
+      <button
+        onClick={() =>
+          editor.dispatchCommand(
+            isOrderedList ? REMOVE_LIST_COMMAND : INSERT_ORDERED_LIST_COMMAND,
+            undefined
+          )
+        }
+        className={
+          "wtly-floating-toolbar__icon " + (isOrderedList ? "active" : "")
+        }
+      >
+        <ListOrdered strokeWidth={dynamicStrokeWidth(isOrderedList)} />
       </button>
-      <button className="wtly-floating-toolbar__icon">
-        <ListTodo strokeWidth={strokeWidth} />
+      <button
+        onClick={() =>
+          editor.dispatchCommand(
+            isCheckList ? REMOVE_LIST_COMMAND : INSERT_CHECK_LIST_COMMAND,
+            undefined
+          )
+        }
+        className={
+          "wtly-floating-toolbar__icon " + (isCheckList ? "active" : "")
+        }
+      >
+        <ListTodo strokeWidth={dynamicStrokeWidth(isCheckList)} />
       </button>
       <SeparatorRoot
         decorative
         orientation="vertical"
         className="wtly-floating-toolbar__separator"
       />
-      <button className="wtly-floating-toolbar__icon">
-        <Heading1 strokeWidth={strokeWidth} />
+      <button
+        onClick={() =>
+          editor.update(() => {
+            const selection = $getSelection();
+            $setBlocksType(selection, () =>
+              isHeading1 ? $createParagraphNode() : $createHeadingNode("h1")
+            );
+          })
+        }
+        className={
+          "wtly-floating-toolbar__icon " + (isHeading1 ? "active" : "")
+        }
+      >
+        <Heading1 strokeWidth={dynamicStrokeWidth(isHeading1)} />
       </button>
-      <button className="wtly-floating-toolbar__icon">
-        <Heading2 strokeWidth={strokeWidth} />
+      <button
+        onClick={() =>
+          editor.update(() => {
+            const selection = $getSelection();
+            $setBlocksType(selection, () =>
+              isHeading2 ? $createParagraphNode() : $createHeadingNode("h2")
+            );
+          })
+        }
+        className={
+          "wtly-floating-toolbar__icon " + (isHeading2 ? "active" : "")
+        }
+      >
+        <Heading2 strokeWidth={dynamicStrokeWidth(isHeading2)} />
       </button>
-      <button className="wtly-floating-toolbar__icon">
-        <Heading3 strokeWidth={strokeWidth} />
+      <button
+        onClick={() =>
+          editor.update(() => {
+            const selection = $getSelection();
+            $setBlocksType(selection, () =>
+              isHeading3 ? $createParagraphNode() : $createHeadingNode("h3")
+            );
+          })
+        }
+        className={
+          "wtly-floating-toolbar__icon " + (isHeading3 ? "active" : "")
+        }
+      >
+        <Heading3 strokeWidth={dynamicStrokeWidth(isHeading3)} />
       </button>
     </div>
   );
