@@ -16,6 +16,7 @@ const disabledCss = {
   "pre code": false,
   hr: false,
   img: false,
+  svg: false,
 };
 
 const config = {

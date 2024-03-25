@@ -39,6 +39,8 @@ const dynamicStrokeWidth = (on: boolean) => {
 export const FloatingTextFormatToolbar = ({
   editor,
   anchorElem,
+  verticalGap,
+  horizontalOffset,
   isLink,
   isBold,
   isItalic,
@@ -56,6 +58,8 @@ export const FloatingTextFormatToolbar = ({
 }: {
   editor: LexicalEditor;
   anchorElem: HTMLElement;
+  verticalGap: number;
+  horizontalOffset: number;
   isBold: boolean;
   isCode: boolean;
   isItalic: boolean;
@@ -128,7 +132,13 @@ export const FloatingTextFormatToolbar = ({
     ) {
       const rangeRect = getDOMRangeRect(nativeSelection, rootElement);
 
-      setFloatingElemPosition(rangeRect, toolbarElem, anchorElem);
+      setFloatingElemPosition(
+        rangeRect,
+        toolbarElem,
+        anchorElem,
+        verticalGap,
+        horizontalOffset,
+      );
     }
   }, [editor, anchorElem]);
 
@@ -171,8 +181,8 @@ export const FloatingTextFormatToolbar = ({
           updateToolbar();
           return false;
         },
-        COMMAND_PRIORITY_LOW
-      )
+        COMMAND_PRIORITY_LOW,
+      ),
     );
   }, [editor, updateToolbar]);
 
@@ -225,7 +235,7 @@ export const FloatingTextFormatToolbar = ({
             isUnorderedList
               ? REMOVE_LIST_COMMAND
               : INSERT_UNORDERED_LIST_COMMAND,
-            undefined
+            undefined,
           )
         }
         className={
@@ -238,7 +248,7 @@ export const FloatingTextFormatToolbar = ({
         onClick={() =>
           editor.dispatchCommand(
             isOrderedList ? REMOVE_LIST_COMMAND : INSERT_ORDERED_LIST_COMMAND,
-            undefined
+            undefined,
           )
         }
         className={
@@ -251,7 +261,7 @@ export const FloatingTextFormatToolbar = ({
         onClick={() =>
           editor.dispatchCommand(
             isCheckList ? REMOVE_LIST_COMMAND : INSERT_CHECK_LIST_COMMAND,
-            undefined
+            undefined,
           )
         }
         className={
@@ -270,7 +280,7 @@ export const FloatingTextFormatToolbar = ({
           editor.update(() => {
             const selection = $getSelection();
             $setBlocksType(selection, () =>
-              isHeading1 ? $createParagraphNode() : $createHeadingNode("h1")
+              isHeading1 ? $createParagraphNode() : $createHeadingNode("h1"),
             );
           })
         }
@@ -285,7 +295,7 @@ export const FloatingTextFormatToolbar = ({
           editor.update(() => {
             const selection = $getSelection();
             $setBlocksType(selection, () =>
-              isHeading2 ? $createParagraphNode() : $createHeadingNode("h2")
+              isHeading2 ? $createParagraphNode() : $createHeadingNode("h2"),
             );
           })
         }
@@ -300,7 +310,7 @@ export const FloatingTextFormatToolbar = ({
           editor.update(() => {
             const selection = $getSelection();
             $setBlocksType(selection, () =>
-              isHeading3 ? $createParagraphNode() : $createHeadingNode("h3")
+              isHeading3 ? $createParagraphNode() : $createHeadingNode("h3"),
             );
           })
         }
@@ -316,7 +326,7 @@ export const FloatingTextFormatToolbar = ({
 
 export function getDOMRangeRect(
   nativeSelection: Selection,
-  rootElement: HTMLElement
+  rootElement: HTMLElement,
 ): DOMRect {
   const domRange = nativeSelection.getRangeAt(0);
 
@@ -335,15 +345,12 @@ export function getDOMRangeRect(
   return rect;
 }
 
-const VERTICAL_GAP = -60;
-const HORIZONTAL_OFFSET = -60;
-
 export function setFloatingElemPosition(
   targetRect: DOMRect | null,
   floatingElem: HTMLElement,
   anchorElem: HTMLElement,
-  verticalGap: number = VERTICAL_GAP,
-  horizontalOffset: number = HORIZONTAL_OFFSET
+  verticalGap: number,
+  horizontalOffset: number,
 ): void {
   const scrollerElem = anchorElem.parentElement;
 
