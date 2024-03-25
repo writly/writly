@@ -63,6 +63,7 @@
     "@lexical/yjs": "^0.13.1",
     "@radix-ui/react-popover": "^1.0.7",
     "@radix-ui/react-scroll-area": "^1.0.5",
+    "@radix-ui/react-separator": "^1.0.3",
     "@types/lodash-es": "^4.17.12",
     "cmdk": "^0.2.1",
     "katex": "^0.16.9",

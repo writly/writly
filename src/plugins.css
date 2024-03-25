@@ -395,6 +395,57 @@
   min-height: 3rem /* 48px */;
 }
 
+/* FloatingTextFormatToolbarPlugin */
+
+.wtly-floating-toolbar__popup {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #fff;
+  padding: 3px 4px;
+  vertical-align: middle;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 10;
+  opacity: 0;
+  box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.3);
+  border-radius: 8px;
+  transition: opacity 0.5s;
+  will-change: transform;
+  gap: 4px;
+}
+
+.wtly-floating-toolbar__icon {
+  color: #404040;
+  background-color: transparent;
+  display: flex;
+  border: 0px;
+  width: 27px;
+  height: 27px;
+  border-radius: 0.375rem;
+  transition-property: color, background-color, border-color,
+    text-decoration-color, fill, stroke;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
+}
+
+.wtly-floating-toolbar__icon:hover {
+  background-color: #f0f0f0;
+}
+
+.wtly-floating-toolbar__icon.active {
+  background-color: #f0f0f0;
+  color: #000000;
+}
+
+.wtly-floating-toolbar__separator {
+  height: 20px;
+  width: 1px;
+  margin: 0 3px;
+  background-color: #cccccc;
+}
+
 /* ImagesPlugin */
 
 .wtly-image__draggable {

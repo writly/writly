@@ -52,6 +52,7 @@ import { MaxLengthPlugin } from "./plugins/MaxLengthPlugin";
 import { PlaceholderPlugin } from "./plugins/PlaceholderPlugin";
 import { theme } from "./theme";
 import { hashCode } from "./utils";
+import { FloatingTextFormatToolbarPlugin } from "./plugins/FloatingTextFormatToolbarPlugin";
 
 export interface WritlyProps {
   id?: string;
@@ -74,6 +75,15 @@ export const Writly = forwardRef<
   WritlyProps
 >(({ id, collaborative = false, maxLength, ...props }, ref) => {
   const [isClient, setIsClient] = useState<boolean>(false);
+
+  const [floatingAnchorElem, setFloatingAnchorElem] =
+    useState<HTMLDivElement | null>(null);
+
+  const onRef = (_floatingAnchorElem: HTMLDivElement) => {
+    if (_floatingAnchorElem !== null) {
+      setFloatingAnchorElem(_floatingAnchorElem);
+    }
+  };
 
   useEffect(() => {
     setIsClient(true);
@@ -100,7 +110,9 @@ export const Writly = forwardRef<
       <RichTextPlugin
         contentEditable={
           <DraggableWrapper>
-            <ContentEditable spellCheck={false} id={hashCode(id)} />
+            <div ref={onRef} className="wtly-editor">
+              <ContentEditable spellCheck={false} id={hashCode(id)} />
+            </div>
           </DraggableWrapper>
         }
         placeholder={<></>}
@@ -127,6 +139,9 @@ export const Writly = forwardRef<
       <MarkdownShortcutPlugin />
       {isClient && <ComponentPickerMenuPlugin />}
       {isClient && <CodeActionMenuPlugin />}
+      {floatingAnchorElem && (
+        <FloatingTextFormatToolbarPlugin anchorElem={floatingAnchorElem} />
+      )}
       {isClient && collaborative && id ? (
         <CollaborationPlugin id={id} />
       ) : (
