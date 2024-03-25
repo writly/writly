@@ -19,31 +19,6 @@ import { createPortal } from "react-dom";
 import { FloatingTextFormatToolbar } from "./FloatingTextFormatToolbar";
 import { $isHeadingNode, HeadingNode } from "@lexical/rich-text";
 
-const getListTypeFromNodes = (nodes: LexicalNode[]) => {
-  let hasListItem = false;
-  let hasList = false;
-  let sampleNode = undefined;
-
-  for (const node of nodes) {
-    if ($isListItemNode(node)) {
-      hasListItem = true;
-      sampleNode = node;
-    } else if ($isListNode(node)) {
-      hasList = true;
-    }
-
-    if (hasListItem && hasList) {
-      return undefined;
-    }
-  }
-
-  if (!hasListItem) {
-    return undefined;
-  }
-
-  return $getNearestNodeOfType(sampleNode!, ListNode)?.__listType;
-};
-
 export const FloatingTextFormatToolbarPlugin = ({
   anchorElem = document?.body,
 }: {
@@ -102,7 +77,7 @@ export const FloatingTextFormatToolbarPlugin = ({
       setIsSuperscript(selection.hasFormat("superscript"));
       setIsCode(selection.hasFormat("code"));
 
-      switch (getListTypeFromNodes(selection.getNodes())) {
+      switch ($getNearestNodeOfType(node!, ListNode)?.__listType) {
         case "bullet":
           setIsUnorderedList(true);
           setIsOrderedList(false);
