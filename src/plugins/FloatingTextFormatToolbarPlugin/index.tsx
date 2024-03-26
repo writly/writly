@@ -18,17 +18,10 @@ import { useCallback, useEffect, useState } from "react";
 import { createPortal } from "react-dom";
 import { FloatingTextFormatToolbar } from "./FloatingTextFormatToolbar";
 
-const VERTICAL_GAP = 0;
-const HORIZONTAL_OFFSET = 0;
-
 export const FloatingTextFormatToolbarPlugin = ({
   anchorElem = document?.body,
-  verticalGap = VERTICAL_GAP,
-  horizontalOffset = HORIZONTAL_OFFSET,
 }: {
   anchorElem?: HTMLElement;
-  verticalGap?: number;
-  horizontalOffset?: number;
 }) => {
   const [isText, setIsText] = useState(false);
   const [isLink, setIsLink] = useState(false);
@@ -170,7 +163,7 @@ export const FloatingTextFormatToolbarPlugin = ({
         if (editor.getRootElement() === null) {
           setIsText(false);
         }
-      }),
+      })
     );
   }, [editor, updatePopup]);
 
@@ -182,8 +175,6 @@ export const FloatingTextFormatToolbarPlugin = ({
     <FloatingTextFormatToolbar
       editor={editor}
       anchorElem={anchorElem}
-      horizontalOffset={horizontalOffset}
-      verticalGap={verticalGap}
       isLink={isLink}
       isBold={isBold}
       isItalic={isItalic}
@@ -199,12 +190,12 @@ export const FloatingTextFormatToolbarPlugin = ({
       isHeading2={isHeading2}
       isHeading3={isHeading3}
     />,
-    anchorElem,
+    anchorElem
   );
 };
 
 export function getSelectedNode(
-  selection: RangeSelection,
+  selection: RangeSelection
 ): TextNode | ElementNode {
   const anchor = selection.anchor;
   const focus = selection.focus;

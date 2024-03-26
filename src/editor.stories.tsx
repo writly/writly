@@ -14,13 +14,22 @@ const meta: Meta<typeof Writly> = {
       return (
         <div
           style={{
-            minWidth: "650px",
-            width: "80%",
-            height: "100%",
-            padding: "50px",
+            display: "flex",
+            justifyContent: "center",
+            width: "80vw",
+            backgroundColor: "#dddddd",
           }}
         >
-          <Story />
+          <div
+            style={{
+              minWidth: "650px",
+              width: "500px",
+              height: "100%",
+              padding: "50px",
+            }}
+          >
+            <Story />
+          </div>
         </div>
       );
     },
