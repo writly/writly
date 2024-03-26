@@ -12,7 +12,7 @@
     "next": "14.1.3",
     "react": "^18",
     "react-dom": "^18",
-    "writly": "^0.1.0-alpha.9"
+    "writly": "^0.1.0-alpha.10"
   },
   "devDependencies": {
     "@tailwindcss/typography": "^0.5.10",
