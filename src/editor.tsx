@@ -136,7 +136,7 @@ export const Writly = forwardRef<
       <HorizontalRulePlugin />
       <ClearEditorPlugin />
       {/* Custom Plugins */}
-      {/* <MarkdownShortcutPlugin /> */}
+      <MarkdownShortcutPlugin />
       {isClient && <ComponentPickerMenuPlugin />}
       {isClient && <CodeActionMenuPlugin />}
       {floatingAnchorElem && (

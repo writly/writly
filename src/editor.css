@@ -72,6 +72,7 @@
 .wtly__listItemUnchecked,
 .wtly__paragraph {
   font-weight: 500;
+  letter-spacing: 0em;
 }
 
 .wtly__textBold {
