@@ -21,7 +21,6 @@ import {
   Code,
   Heading1,
   Heading2,
-  Heading3,
   Italic,
   List,
   ListOrdered,
@@ -52,7 +51,6 @@ export const FloatingTextFormatToolbar = ({
   isCheckList,
   isHeading1,
   isHeading2,
-  isHeading3,
 }: {
   editor: LexicalEditor;
   anchorElem: HTMLElement;
@@ -69,7 +67,6 @@ export const FloatingTextFormatToolbar = ({
   isCheckList: boolean;
   isHeading1: boolean;
   isHeading2: boolean;
-  isHeading3: boolean;
 }) => {
   const toolbarRef = useRef<HTMLDivElement | null>(null);
 
@@ -295,21 +292,6 @@ export const FloatingTextFormatToolbar = ({
       >
         <Heading2 strokeWidth={dynamicStrokeWidth(isHeading2)} />
       </button>
-      <button
-        onClick={() =>
-          editor.update(() => {
-            const selection = $getSelection();
-            $setBlocksType(selection, () =>
-              isHeading3 ? $createParagraphNode() : $createHeadingNode("h3")
-            );
-          })
-        }
-        className={
-          "wtly-floating-toolbar__icon " + (isHeading3 ? "active" : "")
-        }
-      >
-        <Heading3 strokeWidth={dynamicStrokeWidth(isHeading3)} />
-      </button>
     </div>
   );
 };
@@ -335,8 +317,8 @@ export function getDOMRangeRect(
   return rect;
 }
 
-const VERTICAL_GAP = 0;
-const HORIZONTAL_OFFSET = 0;
+const VERTICAL_GAP = 10;
+const HORIZONTAL_OFFSET = 5;
 
 export function setFloatingElemPosition(
   targetRect: DOMRect | null,
@@ -345,32 +327,28 @@ export function setFloatingElemPosition(
   verticalGap: number = VERTICAL_GAP,
   horizontalOffset: number = HORIZONTAL_OFFSET
 ): void {
-  const scrollerElem = anchorElem.parentElement;
-
-  if (targetRect === null || !scrollerElem) {
+  if (targetRect === null) {
     floatingElem.style.opacity = "0";
     floatingElem.style.transform = "translate(-10000px, -10000px)";
     return;
   }
 
   const floatingElemRect = floatingElem.getBoundingClientRect();
-  // const anchorElementRect = anchorElem.getBoundingClientRect();
-  const editorScrollerRect = scrollerElem.getBoundingClientRect();
+  const anchorElementRect = anchorElem.getBoundingClientRect();
 
-  let top = targetRect.top + floatingElemRect.height - verticalGap;
+  let top = targetRect.top - floatingElemRect.height - verticalGap;
   let left = targetRect.left - horizontalOffset;
 
-  if (top < editorScrollerRect.top) {
-    // adjusted height for link element if the element is at top
+  if (top < anchorElementRect.top) {
     top += floatingElemRect.height + targetRect.height + verticalGap * 2;
   }
 
-  if (left + floatingElemRect.width > editorScrollerRect.right) {
-    left = editorScrollerRect.right - floatingElemRect.width - horizontalOffset;
+  if (left + floatingElemRect.width > anchorElementRect.right) {
+    left = anchorElementRect.right - floatingElemRect.width - horizontalOffset;
   }
 
-  top -= editorScrollerRect.top;
-  // left -= anchorElementRect.left;
+  top += anchorElem.offsetTop - anchorElementRect.top;
+  left += anchorElem.offsetLeft - anchorElementRect.left;
 
   floatingElem.style.opacity = "1";
   floatingElem.style.transform = `translate(${left}px, ${top}px)`;

@@ -37,7 +37,6 @@ export const FloatingTextFormatToolbarPlugin = ({
   const [isCheckList, setIsCheckList] = useState(false);
   const [isHeading1, setIsHeading1] = useState(false);
   const [isHeading2, setIsHeading2] = useState(false);
-  const [isHeading3, setIsHeading3] = useState(false);
 
   const [editor] = useLexicalComposerContext();
 
@@ -103,22 +102,18 @@ export const FloatingTextFormatToolbarPlugin = ({
         case "h1":
           setIsHeading1(true);
           setIsHeading2(false);
-          setIsHeading3(false);
           break;
         case "h2":
           setIsHeading1(false);
           setIsHeading2(true);
-          setIsHeading3(false);
           break;
         case "h3":
           setIsHeading1(false);
           setIsHeading2(false);
-          setIsHeading3(true);
           break;
         default:
           setIsHeading1(false);
           setIsHeading2(false);
-          setIsHeading3(false);
           break;
       }
 
@@ -188,7 +183,6 @@ export const FloatingTextFormatToolbarPlugin = ({
       isCheckList={isCheckList}
       isHeading1={isHeading1}
       isHeading2={isHeading2}
-      isHeading3={isHeading3}
     />,
     anchorElem
   );

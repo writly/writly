@@ -16,8 +16,6 @@ const meta: Meta<typeof Writly> = {
           style={{
             display: "flex",
             justifyContent: "center",
-            width: "80vw",
-            backgroundColor: "#dddddd",
           }}
         >
           <div
